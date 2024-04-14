@@ -164,13 +164,14 @@ public class MemberService {
         String option;
         String choice;
 
-        while(keepRunning) {
+        while (keepRunning) {
 
             System.out.println("--------------------------------------------------------");
             System.out.println("                  PROFILE MANAGEMENT");
             System.out.println("--------------------------------------------------------");
 
-            System.out.print("\n"); System.out.print("\n");
+            System.out.print("\n");
+            System.out.print("\n");
 
             System.out.println("+++++++++++++++++++++");
             System.out.println("Profile Details:");
@@ -178,8 +179,6 @@ public class MemberService {
             System.out.print("\n");
 
 
-
-
         }
-
+    }
 }
