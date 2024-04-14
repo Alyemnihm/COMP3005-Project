@@ -6,10 +6,7 @@
 */
 
 -- TODO: CHECK THAT ALL TABLE AND VARIABLE NAME ARE CONSISTENT THROUGHOUT DOC AND GRAPH
-
--- ? can we calculate duration? does it have to be mandatory
  
--- ? keeping address is necessary 
 CREATE TABLE Member (
     id                  SERIAL          PRIMARY KEY,
     first_name          VARCHAR(255)    NOT NULL,
@@ -23,7 +20,7 @@ CREATE TABLE Member (
     postal_code         VARCHAR(255),
     join_date           DATE,
     password            VARCHAR(255)    NOT NULL
-)
+);
 
 
 CREATE TABLE Trainer (
@@ -33,8 +30,8 @@ CREATE TABLE Trainer (
     email               VARCHAR(255)    NOT NULL UNIQUE,
     phone_num           VARCHAR(255)    NOT NULL UNIQUE,
     password            VARCHAR(255)    NOT NULL,
-    hourly_rate         MONEY           NOT NULL,
-)
+    hourly_rate         MONEY           NOT NULL
+);
 
 
 CREATE TABLE TrainsWith (
@@ -42,26 +39,24 @@ CREATE TABLE TrainsWith (
     member_id           INT             NOT NULL,
     trainer_id          INT             NOT NULL,
     session_date        DATE            NOT NULL,
-    duration            INTERVAL        NOT NULL,
     start_time          TIMESTAMP       NOT NULL,
     end_time            TIMESTAMP       NOT NULL, 
     FOREIGN KEY (member_id)
         REFERENCES Member (id),
     FOREIGN KEY (trainer_id)
         REFERENCES Trainer (id)
-)
+);
 
 
-CREATE TABLE GroupFitnessClasses (
+CREATE TABLE GroupFitnessClass (
     booking_id          SERIAL          PRIMARY KEY,
     trainer_id          INT             NOT NULL,
     session_date        DATE            NOT NULL,
-    duration            INTERVAL        NOT NULL,
     start_time          TIMESTAMP       NOT NULL,
     end_time            TIMESTAMP       NOT NULL,
     FOREIGN KEY (trainer_id)
         REFERENCES Trainer (id)
-)
+);
 
 
 CREATE TABLE AdminStaff (
@@ -71,20 +66,21 @@ CREATE TABLE AdminStaff (
     email               VARCHAR(255)    NOT NULL UNIQUE,
     phone_num           VARCHAR(255)    NOT NULL UNIQUE,
     password            VARCHAR(255)    NOT NULL
-)
+);
 
 
 CREATE TABLE FitnessEquipment (
-    serial_num              SERIAL          PRIMARY KEY,
+    serial_num              VARCHAR(255)    PRIMARY KEY,
     model                   VARCHAR(255)    NOT NULL,
     manufacturing_year      INT,
     last_maintained         DATE            NOT NULL          
-)
+);
 
 CREATE TABLE Room (
-    bld_num         INT     PRIMARY KEY,
-    room_num        INT     PRIMARY KEY
-)
+    bld_num         INT,
+    room_num        INT,
+    PRIMARY KEY(bld_num, room_num)
+);
 
 
 CREATE TABLE Bill (
@@ -101,25 +97,26 @@ CREATE TABLE Bill (
     postal_code             VARCHAR(255)    NOT NULL,
     invoice_date            DATE            NOT NULL,
     total_amt               MONEY           NOT NULL,
-    card_num                INT             NOT NULL,
+    card_num                VARCHAR(255)    NOT NULL,
     card_type               VARCHAR(255)    NOT NULL,
-    card_cvv                INT             NOT NULL,
+    card_cvv                VARCHAR(3)      NOT NULL,
     card_first_name         VARCHAR(255)    NOT NULL,
     card_last_name          VARCHAR(255)    NOT NULL,
     FOREIGN KEY (admin_id)
-        REFERENCES AdminStaff (id)
+        REFERENCES AdminStaff (id),
     FOREIGN KEY (member_id)
         REFERENCES Member (id)
-)
+);
 
 CREATE TABLE Attends (
-    booking_id      INT     PRIMARY KEY,
-    member_id       INT     PRIMARY KEY,
+    booking_id      INT,
+    member_id       INT,
+    PRIMARY KEY(booking_id, member_id),
     FOREIGN KEY (booking_id)
-        REFERENCES GroupFitnessClasses (booking_id),
+        REFERENCES GroupFitnessClass (booking_id),
     FOREIGN KEY (member_id)
         REFERENCES Member (id)
-)
+);
 
 
 CREATE TABLE Books (
@@ -128,19 +125,16 @@ CREATE TABLE Books (
     bld_num         INT             NOT NULL,
     room_num        INT             NOT NULL,
     booking_date    DATE            NOT NULL,
-    duration        INTERVAL,
     start_time      TIMESTAMP       NOT NULL,
     end_time        TIMESTAMP       NOT NULL,
     FOREIGN KEY (admin_id)
-        REFERENCES AdminStaff (id)
-    FOREIGN KEY (bld_num)
-        REFERENCES Room (bld_num)
-    FOREIGN KEY (room_num)
-        REFERENCES Room (room_num)
-)
+        REFERENCES AdminStaff (id),
+    FOREIGN KEY (bld_num, room_num)
+        REFERENCES Room (bld_num, room_num)
+);
 
 
-CREATE TABLE HealthMetrics (
+CREATE TABLE HealthMetric (
     record_id       SERIAL              PRIMARY KEY,
     member_id       INT                 NOT NULL,
     systolic_bp     INT                 NOT NULL,
@@ -152,7 +146,7 @@ CREATE TABLE HealthMetrics (
     date_recorded   DATE                NOT NULL,
     FOREIGN KEY (member_id)
         REFERENCES Member (id)
-)
+);
 
 CREATE TABLE Routine (
     routine_id      SERIAL              PRIMARY KEY,
@@ -160,25 +154,28 @@ CREATE TABLE Routine (
     exercise        TEXT                NOT NULL,
     FOREIGN KEY (member_id)
         REFERENCES Member (id)
-)
+);
 
 CREATE TABLE Days (
-    routine_id      INT                 PRIMARY KEY,
-    day             VARCHAR(10)         PRIMARY KEY,
+    routine_id      INT,
+    day             VARCHAR(10),
+    PRIMARY KEY(routine_id, day),
     FOREIGN KEY (routine_id)
         REFERENCES Routine (routine_id)
-)
+);
 
 CREATE TABLE Goals (
-    member_id       INT                 PRIMARY KEY,
-    goal_desc       TEXT                PRIMARY KEY,
+    member_id       INT,
+    goal_desc       TEXT,
+    PRIMARY KEY(member_id, goal_desc),
     FOREIGN KEY (member_id)
-        REFERENCES Member (member_id)           
-)
+        REFERENCES Member (id)           
+);
 
 CREATE TABLE Achievements (
-    member_id              INT                 PRIMARY KEY,
-    achievement_desc       TEXT                PRIMARY KEY,
+    member_id              INT,
+    achievement_desc       TEXT,
+    PRIMARY KEY(member_id, achievement_desc),
     FOREIGN KEY (member_id)
-        REFERENCES Member (member_id)     
-)
+        REFERENCES Member (id)     
+);
