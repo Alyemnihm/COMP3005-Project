@@ -1,0 +1,44 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+
+    <session-factory>
+        <!-- JDBC Database connection settings -->
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/H&amp;FClubManagementSystem</property>
+        <property name="hibernate.connection.username">postgres</property>
+        <property name="hibernate.connection.password">password1234</property>
+
+        <!-- JDBC connection pool settings -->
+        <property name="hibernate.c3p0.min_size">5</property>
+        <property name="hibernate.c3p0.max_size">20</property>
+
+        <!-- Specify dialect -->
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+
+        <!-- Enable Hibernate's automatic session context management -->
+        <property name="hibernate.current_session_context_class">thread</property>
+
+        <!-- Echo all executed SQL to stdout -->
+        <property name="hibernate.show_sql">false</property>
+
+        <!-- Mention annotated class -->
+        <mapping class="ca.carleton.COMP3005Application.model.Member"/>
+        <mapping class="ca.carleton.COMP3005Application.model.Achievement"/>
+        <mapping class="ca.carleton.COMP3005Application.model.Admin"/>
+        <mapping class="ca.carleton.COMP3005Application.model.Attends"/>
+        <mapping class="ca.carleton.COMP3005Application.model.Bill"/>
+        <mapping class="ca.carleton.COMP3005Application.model.Booking"/>
+        <mapping class="ca.carleton.COMP3005Application.model.Day"/>
+        <mapping class="ca.carleton.COMP3005Application.model.FitnessEquipment"/>
+        <mapping class="ca.carleton.COMP3005Application.model.Goal"/>
+        <mapping class="ca.carleton.COMP3005Application.model.GroupFitnessClass"/>
+        <mapping class="ca.carleton.COMP3005Application.model.HealthMetric"/>
+        <mapping class="ca.carleton.COMP3005Application.model.PersonalTrainingSession"/>
+        <mapping class="ca.carleton.COMP3005Application.model.Room"/>
+        <mapping class="ca.carleton.COMP3005Application.model.Routine"/>
+        <mapping class="ca.carleton.COMP3005Application.model.Trainer"/>
+    </session-factory>
+
+</hibernate-configuration>
