@@ -4,7 +4,7 @@ Comp3005 - Project V2
 **Author:** Hajar Alyemni   
 **Group Number:** 120  
 **Date:** April 10th, 2024  
-**Demo video link:** 
+**Demo video link:** https://mediaspace.carleton.ca/media/COMP3005ProjectDemoVideo+-+Hajar+Alyemni/1_gv6lse81
 
 ---
 <br/>
