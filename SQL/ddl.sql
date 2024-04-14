@@ -179,3 +179,13 @@ CREATE TABLE Achievements (
     FOREIGN KEY (member_id)
         REFERENCES Member (id)     
 );
+
+CREATE TABLE WorkShift (
+    trainer_id             INT,
+    date                   DATE,
+    start_time             TIMESTAMP,
+    end_time               TIMESTAMP,
+    PRIMARY KEY(trainer_id, date),
+    FOREIGN KEY (trainer_id)
+        REFERENCES Trainer (id)
+);
