@@ -4,8 +4,6 @@
     Author: Hajar Alyemni (101186632) 
     Due: April 10, 2024
 */
-
--- TODO: CHECK THAT ALL TABLE AND VARIABLE NAME ARE CONSISTENT THROUGHOUT DOC AND GRAPH
  
 CREATE TABLE Member (
     id                  SERIAL          PRIMARY KEY,

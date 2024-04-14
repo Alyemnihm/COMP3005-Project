@@ -1,3 +1,10 @@
+/*
+    COMP 3005: Course Project V2
+    Group Number: 120
+    Author: Hajar Alyemni (101186632) 
+    Due: April 10, 2024
+*/
+
 DELETE FROM Member;
 DELETE FROM Trainer;
 DELETE FROM AdminStaff;
