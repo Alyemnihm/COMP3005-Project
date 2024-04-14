@@ -2,7 +2,7 @@ Comp3005 - Project V2
 --
 
 **Author:** Hajar Alyemni   
-**Group Number:** 120 
+**Group Number:** 120  
 **Date:** April 10th, 2024  
 **Demo video link:** 
 
